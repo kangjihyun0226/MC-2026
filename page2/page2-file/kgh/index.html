@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../default.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+    <script src="./sketch/main.js" defer></script>
+    <title>강지현</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bitcount+Single:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="canvas-container"></div>
+    <header class="overlay-header" id="header">
+      <div class="header-top">
+        <div class="header-left">
+          <a href="../../index.html"><span>마법연구회</span></a>
+        </div>
+
+        <div class="header-center" onclick="toggleInfo()">
+          <span id="arrow-icon">▼</span>
+        </div>
+
+        <div class="header-right">
+          <div class="work-info">
+            <strong>중력시계 (2026)</strong>
+            <span>강지현</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-details" id="details">
+        <p>
+          시, 분 그리고 초 공을 담는 투명그릇에 1시간, 1분 그리고 1초가 흐를 때
+          마다 각각의 그릇에 공이 떨어진다. 그리고 백그라운드에는 디지털시계로
+          시간을 알려주고 있다.
+        </p>
+      </div>
+    </header>
+
+    <main class="canvas-container">
+      <canvas id="defaultCanvas0"></canvas>
+    </main>
+
+    <script>
+      function toggleInfo() {
+        const header = document.getElementById("header");
+        const arrow = document.getElementById("arrow-icon");
+
+        header.classList.toggle("is-open");
+
+        // 화살표 방향 전환
+        if (header.classList.contains("is-open")) {
+          arrow.innerText = "▲";
+        } else {
+          arrow.innerText = "▼";
+        }
+      }
+    </script>
+
+    <a href="./index.html" class="nav-arrow left-arrow">
+      <span>◀</span>
+    </a>
+
+    <a href="./index.html" class="nav-arrow right-arrow">
+      <span>▶</span>
+    </a>
+  </body>
+</html>

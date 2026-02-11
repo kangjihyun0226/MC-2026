@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="overlay-header" id="header">
+        <div class="header-top">
+            <div class="header-left">
+                <span>마법연구회</span>
+            </div>
+            
+            <div class="header-center" onclick="toggleInfo()">
+                <span id="arrow-icon">▼</span>
+            </div>
+
+            <div class="header-right">
+                <div class="work-info">
+                    <strong>중력시계 (2026)</strong>
+                    <span>강지현</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-details" id="details">
+            <p>시, 분 그리고 초 공을 담는 투명그릇에 1시간, 1분 그리고 1초가 흐를 때 마다 각각의 그릇에 공이 떨어진다. 그리고 백그라운드에는 디지털시계로 시간을 알려주고 있다.</p>
+        </div>
+    </header>
+
+    <main class="canvas-container">
+        <canvas id="defaultCanvas0"></canvas>
+    </main>
+
+    <script>
+        function toggleInfo() {
+            const header = document.getElementById('header');
+            const arrow = document.getElementById('arrow-icon');
+            
+            header.classList.toggle('is-open');
+            
+            // 화살표 방향 전환
+            if (header.classList.contains('is-open')) {
+                arrow.innerText = '▲';
+            } else {
+                arrow.innerText = '▼';
+            }
+        }
+    </script>
+
+    <a href="page1.html" class="nav-arrow left-arrow">
+    <span>&lt;</span>
+</a>
+
+<a href="page4.html" class="nav-arrow right-arrow">
+    <span>&gt;</span>
+</a>
+</body>
+</html>

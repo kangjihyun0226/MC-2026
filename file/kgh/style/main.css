@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "PyeongchangPeace";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Noto Sans KR", sans-serif;
+  color: white;
+}
+
+/* 상단바 오버레이 설정 */
+.overlay-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* 배경은 80% 투명도, 글자는 영향받지 않음 */
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  height: 60px; /* 기본 1번 이미지 상태 높이 */
+}
+
+/* 2번 이미지처럼 열렸을 때의 높이 */
+.overlay-header.is-open {
+  height: 200px; /* 설명 글 길이에 맞춰 조절 가능 */
+}
+
+/* 상단바 내부 레이아웃 */
+.header-top {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.header-left {
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-family: "PyeongchangPeace", sans-serif;
+}
+
+.header-left a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: white; /* 폰트 색상을 흰색으로 고정 */
+  font-family: "PyeongchangPeace", sans-serif; /* 설정한 폰트 적용 */
+}
+
+.header-center {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.work-info {
+  text-align: right;
+  line-height: 1.2;
+}
+.header-right {
+  text-align: right;
+  line-height: 15px;
+  gap: 10px;
+}
+
+.header-right strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header-right span {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* 상세 설명 영역 (2번 이미지 효과) */
+.header-details {
+  padding: 20px 10%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-header.is-open .header-details {
+  opacity: 1;
+}
+
+.header-details p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.nav-arrow {
+  position: fixed;
+  top: 50%; /* 화면 세로 중앙 */
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+
+  /* 배경 80% 투명도 검정 */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  opacity: 0.6;
+  text-decoration: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* 원형 버튼 */
+  font-size: 1.5rem;
+  z-index: 900; /* 상단바(1000)보다는 아래, 작품보다는 위 */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 왼쪽 화살표 위치 */
+.left-arrow {
+  left: 30px;
+}
+
+/* 오른쪽 화살표 위치 */
+.right-arrow {
+  right: 30px;
+}
+
+/* 마우스 호버 효과 */
+.nav-arrow:hover {
+  opacity: 1;
+}
+
+/* 클릭했을 때 반응 */
+.nav-arrow:active {
+  opacity: 0.6;
+}

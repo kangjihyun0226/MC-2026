@@ -1,0 +1,111 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: white;
+}
+
+/* 상단바 오버레이 설정 */
+.overlay-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* 배경은 80% 투명도, 글자는 영향받지 않음 */
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  height: 60px; /* 기본 1번 이미지 상태 높이 */
+}
+
+/* 2번 이미지처럼 열렸을 때의 높이 */
+.overlay-header.is-open {
+  height: 200px; /* 설명 글 길이에 맞춰 조절 가능 */
+}
+
+/* 상단바 내부 레이아웃 */
+.header-top {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.header-left {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.header-left a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: white; /* 폰트 색상을 흰색으로 고정 */
+  font-family: "PyeongchangPeace", sans-serif; /* 설정한 폰트 적용 */
+}
+
+.header-center {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.work-info {
+  text-align: right;
+  line-height: 1.8; /* 기본값(1.2)보다 높여서 두 줄 사이를 벌립니다 */
+}
+
+.header-right {
+  text-align: right;
+  line-height: 1.2;
+}
+
+.header-right strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.header-right span {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+/* 상세 설명 영역 (2번 이미지 효과) */
+.header-details {
+  padding: 20px 10%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-header.is-open .header-details {
+  opacity: 1;
+}
+
+.header-details p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* 좌우 화살표 버튼 (가안) */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 900;
+}
+
+.left-arrow {
+  left: 20px;
+}
+.right-arrow {
+  right: 20px;
+}
