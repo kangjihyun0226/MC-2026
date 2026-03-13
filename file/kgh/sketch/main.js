@@ -1,10 +1,3 @@
-// 기본설정
-const canvasContainer = document.querySelector(".canvas-container");
-
-// const INITIAL_W = 400;
-// const INITIAL_H = 400;
-// const INITIAL_RATIO = INITIAL_W / INITIAL_H;
-
 const {
   Engine,
   Runner,
@@ -27,42 +20,19 @@ let hourBalls = [];
 let hourR = 68;
 
 function setup() {
-  const { width: containerWidth, height: containerHeight } =
-    canvasContainer.getBoundingClientRect();
-
-  const renderer = createCanvas(containerWidth, containerHeight);
-  renderer.parent(canvasContainer);
-  // renderer.elt.style.aspectRatio = '${width}';
-  // renderer.elt.style.width = `${containerWidth}px`;
-  // renderer.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
+  // 1. 캔버스를 윈도우 전체 크기로 생성하고 body에 자동 배치합니다.
+  createCanvas(windowWidth, windowHeight);
 
   engine = Engine.create();
   world = engine.world;
 
-  walls = [
-    // 밑 벽
-    Bodies.rectangle(0.5 * width, height, width, 100, { isStatic: true }),
-    // 왼 벽
-    Bodies.rectangle(0, 0.5 * height, 100, height, { isStatic: true }),
-    // 오른 벽
-    Bodies.rectangle(width, 0.5 * height, 100, height, { isStatic: true }),
-    // 중앙오른
-    Bodies.rectangle(width * 0.33, 0.5 * height, 100, height * 2, {
-      isStatic: true,
-    }),
-    // 중앙 왼쪽
-    Bodies.rectangle(width * 0.66, 0.5 * height, 100, height * 2, {
-      isStatic: true,
-    }),
-  ];
+  // 벽 생성 (width, height 변수는 p5.js가 생성한 전체 화면 크기를 따릅니다)
+  createWalls();
 
-  // 벽들 추가
-  Composite.add(world, walls);
-
-  const mouse = Mouse.create(renderer.elt);
+  // 2. 마우스 제약 조건도 윈도우 전체를 기준으로 설정합니다.
+  const mouse = Mouse.create(canvas.elt); // p5.js 기본 캔버스 요소 사용
   mouse.pixelRatio = pixelDensity();
 
-  // 마우스로 드래그
   const mouseConstraint = MouseConstraint.create(engine, {
     mouse,
     constraint: {
@@ -70,50 +40,59 @@ function setup() {
     },
   });
 
-  // 마우스 추가
   Composite.add(world, mouseConstraint);
 
-  // 엔진 실행
   const runner = Runner.create();
   Runner.run(runner, engine);
 
-  // help..
-  // 현재 시각에 맞춰 초기 공 생성
+  // 초기 공 생성
   const currentSecond = second();
   const currentMinute = minute();
   const currentHour = hour();
 
-  // 초 공 생성
-  for (let i = 0; i < currentSecond; i++) {
-    dropSBall();
-  }
-  // 분 공 생성
-  for (let i = 0; i < currentMinute; i++) {
-    dropMBall();
-  }
-  // 시 공 생성
-  for (let i = 0; i < currentHour; i++) {
-    dropHBall();
-  }
+  for (let i = 0; i < currentSecond; i++) dropSBall();
+  for (let i = 0; i < currentMinute; i++) dropMBall();
+  for (let i = 0; i < currentHour; i++) dropHBall();
 }
 
-// 초 공을 떨어뜨리는 함수
+// 3. 창 크기가 바뀔 때 캔버스와 벽의 위치를 업데이트합니다.
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  // 기존 벽을 제거하고 새로 생성하여 화면 크기에 맞춥니다.
+  Composite.remove(world, walls);
+  createWalls();
+}
+
+function createWalls() {
+  walls = [
+    Bodies.rectangle(width * 0.5, height + 50, width, 100, { isStatic: true }), // 하단
+    Bodies.rectangle(-50, height * 0.5, 100, height, { isStatic: true }), // 좌측
+    Bodies.rectangle(width + 50, height * 0.5, 100, height, { isStatic: true }), // 우측
+    Bodies.rectangle(width * 0.33, height * 0.5, 100, height * 2, {
+      isStatic: true,
+    }), // 중앙 좌
+    Bodies.rectangle(width * 0.66, height * 0.5, 100, height * 2, {
+      isStatic: true,
+    }), // 중앙 우
+  ];
+  Composite.add(world, walls);
+}
+
+// 공 낙하 로직 (기존과 동일하지만 width 기반으로 좌표 작동)
 function dropSBall() {
-  const sBall = Bodies.circle(width * 0.8, 0, secondR);
+  const sBall = Bodies.circle(width * 0.8, -50, secondR);
   secondBalls.push(sBall);
   Composite.add(world, sBall);
 }
 
-// 분 공을 떨어뜨리는 함수
 function dropMBall() {
-  const mBall = Bodies.circle(width * 0.5, 0, minuteR);
+  const mBall = Bodies.circle(width * 0.5, -50, minuteR);
   minuteBalls.push(mBall);
   Composite.add(world, mBall);
 }
 
-// 시 공을 떨어뜨리는 함수
 function dropHBall() {
-  const hBall = Bodies.circle(width * 0.15, 0, hourR);
+  const hBall = Bodies.circle(width * 0.15, -50, hourR);
   hourBalls.push(hBall);
   Composite.add(world, hBall);
 }

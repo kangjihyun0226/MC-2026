@@ -21,7 +21,6 @@
     />
   </head>
   <body>
-    <div class="canvas-container"></div>
     <header class="overlay-header" id="header">
       <div class="header-top">
         <div class="header-left">
@@ -42,16 +41,16 @@
 
       <div class="header-details" id="details">
         <p>
-          시, 분 그리고 초 공을 담는 투명그릇에 1시간, 1분 그리고 1초가 흐를 때
-          마다 각각의 그릇에 공이 떨어진다. 그리고 백그라운드에는 디지털시계로
-          시간을 알려주고 있다.
+          시간의 흐름을 중력의 움직임으로 시각화한 이 작품은 1초가 지날 때마다
+          초 공이 떨어지고 1분이 지나면 분 공이, 1시간이 흐르면 시 공이 차례로
+          낙하하도록 구성되어 있다. 배경의 디지털 시계는 볼록 렌즈나 물방울을
+          통해 사물을 바라볼 때처럼 형태가 왜곡되어 보여 유기적인 생동감을
+          더한다. 하루의 끝인 24:00:00이 되는 순간에는 어떤 장면이 펼쳐질까?
         </p>
       </div>
     </header>
 
-    <main class="canvas-container">
-      <canvas id="defaultCanvas0"></canvas>
-    </main>
+    <main class="canvas-container"></main>
 
     <script>
       function toggleInfo() {
@@ -60,7 +59,6 @@
 
         header.classList.toggle("is-open");
 
-        // 화살표 방향 전환
         if (header.classList.contains("is-open")) {
           arrow.innerText = "▲";
         } else {
