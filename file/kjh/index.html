@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style/default.css" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <!-- <script src="./node_modules/p5/lib/p5.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.0.5/lib/p5.js"></script>
+    <script src="./sketch/sketch0-1.js" defer></script>
+    <title>kjh</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="overlay-header" id="header">
+      <div class="header-top">
+        <div class="header-left">
+          <a href="index.html">마법연구회</a>
+        </div>
+
+        <div class="header-center" onclick="toggleInfo()">
+          <span id="arrow-icon">▼</span>
+        </div>
+
+        <div class="header-right">
+          <div class="work-info">
+            <strong>그래픽 시계 (2026)</strong>
+            <span>강제헌</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-details" id="details">
+        <p>
+          시간의 흐름을 중심에서 뻗어 나가는 파동으로 시각화합니다. 안쪽에서
+          바깥쪽으로 시, 분, 초가 층을 이루며, 각 시간의 단위가 찰나의 순간을
+          원형의 궤적으로 그리며 회전합니다.
+        </p>
+      </div>
+    </header>
+
+    <main class="canvas-container"></main>
+
+    <script>
+      function toggleInfo() {
+        const header = document.getElementById("header");
+        const arrow = document.getElementById("arrow-icon");
+
+        header.classList.toggle("is-open");
+
+        // 화살표 방향 전환
+        if (header.classList.contains("is-open")) {
+          arrow.innerText = "▲";
+        } else {
+          arrow.innerText = "▼";
+        }
+      }
+    </script>
+
+    <a href="page1.html" class="nav-arrow left-arrow">
+      <span>◀</span>
+    </a>
+
+    <a href="page4.html" class="nav-arrow right-arrow">
+      <span>▶</span>
+    </a>
+  </body>
+</html>

@@ -20,17 +20,15 @@ let hourBalls = [];
 let hourR = 68;
 
 function setup() {
-  // 1. 캔버스를 윈도우 전체 크기로 생성하고 body에 자동 배치합니다.
+
   createCanvas(windowWidth, windowHeight);
 
   engine = Engine.create();
   world = engine.world;
 
-  // 벽 생성 (width, height 변수는 p5.js가 생성한 전체 화면 크기를 따릅니다)
   createWalls();
 
-  // 2. 마우스 제약 조건도 윈도우 전체를 기준으로 설정합니다.
-  const mouse = Mouse.create(canvas.elt); // p5.js 기본 캔버스 요소 사용
+  const mouse = Mouse.create(canvas.elt); 
   mouse.pixelRatio = pixelDensity();
 
   const mouseConstraint = MouseConstraint.create(engine, {
